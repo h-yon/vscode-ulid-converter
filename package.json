@@ -1,7 +1,8 @@
 {
-  "name": "ulid-converter",
-	"displayName": "ULID-converter",
-	"description": "",
+	"name": "ulid-hex-converter",
+	"displayName": "ULID-hex-converter",
+	"description": "Convert ULID to hex, or vice versa.",
+	"license": "MIT",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.65.0"
@@ -10,14 +11,26 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:ulid-converter.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"virtualWorkspaces": false,
+		"untrustedWorkspaces": {
+			"supported": false
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"command": "ulid-hex-converter.encode",
+					"when": "editorHasSelection"
+				}
+			]
+		},
 		"commands": [
 			{
-				"command": "ulid-converter.helloWorld",
-				"title": "Hello World"
+				"command": "ulid-hex-converter.encode",
+				"title": "Convert hex to ULID"
 			}
 		]
 	},
@@ -30,16 +43,19 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.65.0",
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^9.1.0",
 		"@types/node": "14.x",
+		"@types/vscode": "^1.65.0",
 		"@typescript-eslint/eslint-plugin": "^5.12.1",
 		"@typescript-eslint/parser": "^5.12.1",
+		"@vscode/test-electron": "^2.1.2",
 		"eslint": "^8.9.0",
 		"glob": "^7.2.0",
 		"mocha": "^9.2.1",
-		"typescript": "^4.5.5",
-		"@vscode/test-electron": "^2.1.2"
+		"typescript": "^4.5.5"
+	},
+	"dependencies": {
+		"ulid": "^2.3.0"
 	}
 }
