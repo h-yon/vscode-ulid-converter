@@ -3,9 +3,7 @@ import * as vscode from 'vscode';
 
 const ENCODING = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'; // Crockford's Base32
 const ENCODING_LEN = ENCODING.length;
-// const ULID_MAX = BigInt(Math.pow(2, 128)) - 1n
 const TIME_LEN = 10;
-// const RANDOM_LEN = 16
 
 function decodeRandom(id: string): bigint {
   var random = id
@@ -20,7 +18,12 @@ function decodeRandom(id: string): bigint {
 }
 
 function decode(id: string, radix: number): string {
-  return ulid.decodeTime(id).toString(radix) + decodeRandom(id).toString(radix);
+  let time = ulid.decodeTime(id).toString(radix);
+  if (time === '0') {
+    time = '';
+  }
+  const random = decodeRandom(id).toString(radix);
+  return time + random;
 }
 
 function encodePart(part: number, len: number): string {
@@ -72,7 +75,7 @@ export function activate(context: vscode.ExtensionContext) {
     ),
     vscode.languages.registerHoverProvider([{ language: 'plaintext' }], {
       provideHover(document, position, token) {
-        let wordRange = document.getWordRangeAtPosition(
+        const wordRange = document.getWordRangeAtPosition(
           position,
           /[0-7][0123456789ABCDEFGHJKMNPQRSTVWXYZ]{25}/
         );
@@ -80,7 +83,7 @@ export function activate(context: vscode.ExtensionContext) {
           return undefined;
         }
 
-        let currentWord = document.getText(wordRange);
+        const currentWord = document.getText(wordRange);
         return new vscode.Hover(
           `ULID: \`${currentWord}\`\n\n` +
             `time: ${new Date(
