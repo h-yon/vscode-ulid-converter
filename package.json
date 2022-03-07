@@ -1,8 +1,10 @@
 {
 	"name": "ulid-hex-converter",
-	"displayName": "ULID-hex-converter",
+	"displayName": "ULID hex converter",
 	"description": "Convert ULID to hex, or vice versa.",
 	"license": "MIT",
+	"publisher": "h-yon",
+	"author": "Hibiki Yonahara",
 	"icon": "icon.png",
 	"version": "0.0.1",
 	"engines": {
