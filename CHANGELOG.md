@@ -1,9 +1,7 @@
-# Change Log
+# Changelog
 
-All notable changes to the "ulid-converter" extension will be documented in this file.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+### 1.0.0 (2022-03-07)
 
 - Initial release
