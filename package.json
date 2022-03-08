@@ -6,7 +6,7 @@
 	"publisher": "h-yon",
 	"author": "Hibiki Yonahara",
 	"icon": "icon.png",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.65.0"
 	},
