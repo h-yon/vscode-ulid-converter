@@ -23,7 +23,11 @@ function decode(id: string, radix: number): string {
     time = '';
   }
   const random = decodeRandom(id).toString(radix);
-  return time + random;
+  let ret = time + random;
+  if (ret.length % 2 == 1) {
+    ret = '0' + ret;
+  }
+  return ret;
 }
 
 function encodePart(part: number, len: number): string {
